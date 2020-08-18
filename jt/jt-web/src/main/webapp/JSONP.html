@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JSONP测试</title>
+<script type="text/javascript" src="http://manage.jt.com/js/jquery-easyui-1.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		alert("测试访问开始!!!!!")
+		//网页位置: www.jt.com/JSONP.html
+		$.ajax({
+			url:"http://manage.jt.com/web/testJSONP",
+			type:"get",				//jsonp只能支持get请求  不支持post,因为src支持get
+			dataType:"jsonp",       //dataType表示返回值类型  如果是跨域访问,则必须添加jsonp
+			jsonp: "callback",    //指定参数名称  一般默认约定都叫callback
+			jsonpCallback: "hello",  //指定回调函数名称
+			success:function (data){   //data经过jQuery封装返回就是json串
+				alert(data.id);
+				alert(data.password);
+			}	
+		});	
+	})
+</script>
+</head>
+<body>
+	<h1>JSON跨域请求测试</h1>
+</body>
+</html>
